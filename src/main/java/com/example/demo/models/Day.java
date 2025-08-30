@@ -4,17 +4,19 @@ package com.example.demo.models;
 
 public class Day {
     
-    private double morningSells;
-    private double afternoonSells;
-    private double totalSells;
+    private double morningSells = 0;
+    private double afternoonSells = 0;
+    private double totalSells = 0;
 
-    private boolean holiday;
+    private boolean holiday = false;
 
     //bd relations 
 
     // many Days to one Month
     
     private Month month;
+
+    //
 
     public Day(Month month){
         this.month = month;
@@ -23,7 +25,7 @@ public class Day {
 
 
 
-//gets snd sets
+    //gets snd sets
 
     public double getMorningSells(){
         return morningSells;
