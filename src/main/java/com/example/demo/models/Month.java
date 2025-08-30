@@ -8,10 +8,10 @@ public class Month {
     //or even get them to a different class/handler.
 
     private double goal = 0;
-    private double averageBDsells;  //the mean of business days
-    private double averageHDsells;  //the mean of the holidaySells
-
     private String name;
+    //the mean of the holidaySells
+
+    
     
 
     //bd  relations
@@ -158,6 +158,11 @@ public class Month {
         return this.name;
     }
 
-
+    public List<Day> getDays(){
+        return days;
+    }
+    public void setDays(List<Day> days){
+        this.days = days;
+    }
     //END
 }

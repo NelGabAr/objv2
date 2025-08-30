@@ -61,6 +61,11 @@ public class Day {
         this.holiday = holiday;
     }
 
-
+    public void setMonth(Month month){
+        this.month = month;
+    }
+    public Month getMonth(){
+        return this.month;
+    }
 
 }
