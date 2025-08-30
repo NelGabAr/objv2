@@ -1,7 +1,13 @@
 package com.example.demo.models;
 
 import java.util.List;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 
+@Entity
+@NoArgsConstructor
+@AllArgsConstructor
 public class Month {
     
     //all of the next one, could probably be just a bunch of returns from methods.
@@ -11,19 +17,14 @@ public class Month {
     private String name;
     //the mean of the holidaySells
 
-    
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    Long Id;
     
 
     //bd  relations
+    @OneToMany(mappedBy = "month", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Day> days;
-
-
-    public Month(){
-
-    }
-
-    
-
 
     //pseudo gets of total amount of sells by period of time
 

@@ -1,12 +1,20 @@
 package com.example.demo.models;
 
+import jakarta.persistence.*;
+import lombok.*;
 
-
+@Entity
+@NoArgsConstructor
+@AllArgsConstructor
 public class Day {
+
+    @jakarta.persistence.Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    Long Id;
     
-    private double morningSells = 0;
-    private double afternoonSells = 0;
-    private double totalSells = 0;
+    private double morningSells = 0.0;
+    private double afternoonSells = 0.0;
+    private double totalSells = 0.0;
 
     private boolean holiday = false;
 
@@ -14,16 +22,9 @@ public class Day {
 
     // many Days to one Month
     
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "month_id")
     private Month month;
-
-    //
-
-    public Day(Month month){
-        this.month = month;
-    }
-
-
-
 
     //gets snd sets
 
@@ -42,8 +43,6 @@ public class Day {
     public boolean getHoliday(){
         return holiday;
     }
-
-
 
     public void setMorningSells(double morningSells){
         this.morningSells = morningSells;
