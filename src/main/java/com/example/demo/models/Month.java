@@ -2,31 +2,25 @@ package com.example.demo.models;
 
 import java.util.List;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
 public class Month {
-    
-    //all of the next one, could probably be just a bunch of returns from methods.
-    //or even get them to a different class/handler.
 
     private double goal = 0;
     private String name;
-    //the mean of the holidaySells
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     Long Id;
-    
 
     //bd  relations
     @OneToMany(mappedBy = "month", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Day> days;
 
-    //pseudo gets of total amount of sells by period of time
+
 
     public double totalSells(){
         double totalSells = 0;
@@ -36,7 +30,9 @@ public class Month {
         return totalSells;
     }
 
-   public double totalMorningSells(){
+
+
+    public double totalMorningSells(){
         double totalMorningSells = 0;
         for (Day day : days) {
             totalMorningSells += day.getMorningSells();
@@ -44,7 +40,9 @@ public class Month {
         return totalMorningSells;
     }
 
-   public double totalAfternoonSells(){
+
+
+    public double totalAfternoonSells(){
         double totalAfternoonSells = 0;
         for (Day day : days) {
             totalAfternoonSells += day.getAfternoonSells();
@@ -52,12 +50,14 @@ public class Month {
         return totalAfternoonSells;
     }
 
+
+
     public double remainingSells(){
         return this.goal - this.totalSells();
     }
-    //END
 
-    //special cases for days passed
+
+
     public int daysPassed(){
         int daysPassed = 0;
         for (Day day : days) {
@@ -65,6 +65,7 @@ public class Month {
         }
         return daysPassed;
     }
+
     public int HdDaysPassed(){
         int HdDaysPassed = 0;
         for (Day day : days) {
@@ -80,9 +81,8 @@ public class Month {
         }
         return BdDaysPassed;
     }
-    //END
 
-    //special cases of amount of sells
+
 
     public double totalHolidaySells(){
         double totalHolidaySells = 0;
@@ -91,7 +91,6 @@ public class Month {
         }
         return totalHolidaySells;
     }
-
 
     public double totalBdSells(){
         double totalBdSells = 0;
@@ -102,39 +101,36 @@ public class Month {
     }
 
 
-    
-    //END
 
     //means and arithmetic thinggys
     public double averageSells(){
         if (daysPassed()==0) return 0;
         return totalSells()/daysPassed();
     }
+
     public double averageBDsells(){
         if (BdDaysPassed()==0) return 0;
         return totalBdSells()/BdDaysPassed();
     }
+
     public double averageHDsells(){
         if (HdDaysPassed() == 0) return 0;
         return totalHolidaySells()/HdDaysPassed();
     }
 
-
     public double averageMorningSells(){
         if (daysPassed() == 0) return 0;
         return totalMorningSells()/daysPassed();
-            
-    
     }
+
     public double averageAfternoonSells(){
         if (daysPassed() == 0) return 0;
         return totalAfternoonSells()/daysPassed();
-            
-        
     }
 
-    //Predictions
 
+
+    //Predictions
     public double remainingDays(){
         if (this.goal == 0 ) return 0;
         return remainingSells()/averageSells();
@@ -150,22 +146,19 @@ public class Month {
     public void setGoal(double goal){
         this.goal = goal;
     }
-
-
     public void setName(String name){
         this.name = name;
     }
     public String getName(){
         return this.name;
     }
-
     public List<Day> getDays(){
         return days;
     }
     public void setDays(List<Day> days){
         this.days = days;
     }
-    //END
+
 
 
 }

@@ -8,25 +8,22 @@ import lombok.*;
 @AllArgsConstructor
 public class Day {
 
-    @jakarta.persistence.Id
+    @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     Long Id;
     
     private double morningSells = 0.0;
     private double afternoonSells = 0.0;
     private double totalSells = 0.0;
-
     private boolean holiday = false;
 
-    //bd relations 
-
-    // many Days to one Month
-    
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "month_id")
     private Month month;
 
-    //gets snd sets
+////////////////////////////////////////////////////////////////////////////////
+
+
 
     public double getMorningSells(){
         return morningSells;
