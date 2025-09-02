@@ -1,22 +1,24 @@
 package com.example.demo.Factories;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.example.demo.models.Month;
 import com.example.demo.services.*;
 
-@Component
+@Service
 public class MonthFactory {
     @Autowired
-    MonthService monthService;
-
+    private MonthService monthService;
     @Autowired
-    DayService dayService;
+    private DayService dayService;
+
+    
 
      @Transactional
     public Month startNewMonth(String name, int totalDays){
+
         Month month = new Month();
         month.setName(name);
 
