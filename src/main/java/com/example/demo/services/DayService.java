@@ -17,9 +17,11 @@ public class DayService {
         this.dayRepo = dayRepo;
     }
 
+    public Day save(Day day){
+        return dayRepo.save(day);
+    }
 
-
-    public Day saveDay(Month month){
+    public Day saveNewDay(Month month){
         Day day = new Day();
         day.setMonth(month);
         return dayRepo.save(day);

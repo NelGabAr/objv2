@@ -20,7 +20,9 @@ public class Month {
     @OneToMany(mappedBy = "month", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Day> days;
 
-
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "year_id")
+    private Year year;
 
     public double totalSells(){
         double totalSells = 0;
@@ -158,7 +160,12 @@ public class Month {
     public void setDays(List<Day> days){
         this.days = days;
     }
-
+    public void setYear(Year year){
+        this.year = year;
+    }
+    public Year getYear(){
+        return this.year;
+    }
 
 
 }

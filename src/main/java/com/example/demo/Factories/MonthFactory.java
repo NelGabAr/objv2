@@ -20,14 +20,16 @@ public class MonthFactory {
 
 
     @Transactional
-    public Month startNewMonth(String name, int totalDays){
+    public Month startNewMonth(String name, int totalDays, Year year){
+
 
         Month month = new Month();
         month.setName(name);
+        month.setYear(year);
         month = monthService.save(month);
         
         for(int i=0;i<totalDays;i++){
-            dayService.saveDay(month);
+            dayService.saveNewDay(month);
         }
         return monthService.save(month);
     }
