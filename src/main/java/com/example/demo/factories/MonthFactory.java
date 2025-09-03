@@ -1,4 +1,4 @@
-package com.example.demo.Factories;
+package com.example.demo.factories;
 
 import com.example.demo.models.*;
 import com.example.demo.services.*;
