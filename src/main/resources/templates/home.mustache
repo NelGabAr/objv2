@@ -29,7 +29,7 @@
                 <button type="button" id="graphs"> Graficas </button>
                 </div>
                 <div class="margin">
-                <button type="button" id="objetives"> Objetivos </button>
+                <button type="button" id="objectives"> Objetivos </button>
                 </div>
             </div>
     </div>
@@ -45,17 +45,17 @@
     <script>
     document.addEventListener('DOMContentLoaded', function() {
         const btnGraphs = document.getElementById('graphs');
-        const btnObjective = document.getElementById('objective');
+        const btnObjective = document.getElementById('objectives');
         if (btnGraphs) {
-            btnRegister.addEventListener('click', function() {
+            btnGraphs.addEventListener('click', function() {
             window.location.href = '/home';
             });
         }
 
         if (btnObjective) {
-            btnAcces.addEventListener('click',function() {
+            btnObjective.addEventListener('click',function() {
             window.location.href = '/years';
-            })
+            });
         }
         });
     </script>

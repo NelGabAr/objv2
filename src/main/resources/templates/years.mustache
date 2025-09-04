@@ -25,11 +25,13 @@
             <p class = "gothic">{{username}}</p>
         </div>
             <div class="horizontal">
+                {{#years}}
                 <div class="margin">
-                <button type="button" id="graphs"> Graficas </button>
+                <button type="button" id="graphs"> {{number}} </button>
                 </div>
+                {{/years}}
                 <div class="margin">
-                <button type="button" id="objetives"> Objetivos </button>
+                <button type="button" id="newYear"> nuevo año </button>
                 </div>
             </div>
     </div>
@@ -53,7 +55,7 @@
         }
 
         if (btnObjective) {
-            btnAcces.addEventListener('click',function() {
+            btnObjective.addEventListener('click',function() {
             window.location.href = '/years';
             })
         }
