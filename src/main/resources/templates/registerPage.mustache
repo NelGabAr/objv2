@@ -22,15 +22,31 @@
     <div class="centeredDiv">
         
         <div>
-            <p class = "gothic">Estado de objetivos mensuales e Historicos</p>
+            <p class = "gothic">Creacion de cuenta de tienda</p>
         </div>
-            <div class="horizontal">
-                <div class="margin">
-                <button type="button" id="acces"> Acceso tienda </button>
-                </div>
-                <div class="margin">
-                <button type="button" id="register"> Registrar tienda </button>
-                </div>
+            <div class="vertical">
+
+        <form action="/register" method="POST" class="interiorFormDiv">
+            <div class="elemento-flex">
+                <label for="username" class="insideLeft">Nombre de usuario:</label>
+                <input type="text" id="username" name="username" required >
+            </div>
+
+            <div class="elemento-flex">
+                <label for="password" class="insideLeft">Contraseña:</label>
+                <input type="password" id="password" name="password" required >
+            </div>
+
+            <div class="elemento-flex">
+                <label for="confirm_password" class="insideLeft">Repetir Contraseña:</label>
+                <input type="password" id="repassword" name="repassword" required >
+            </div>
+                <input type="hidden" name="{{_csrf.parameterName}}" value="{{_csrf.token}}"/>
+            <div class="centered">
+                <button type="submit">Registrarse</button>
+            </div>
+        </form>
+
             </div>
     </div>
 </div>
@@ -43,21 +59,7 @@
     
     <!-- El script debe ir al final del body para asegurar que el DOM esté listo -->
     <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const btnRegister = document.getElementById('register');
-        const btnAcces = document.getElementById('acces');
-        if (btnRegister) {
-            btnRegister.addEventListener('click', function() {
-            window.location.href = '/register';
-            });
-        }
 
-        if (btnAcces) {
-            btnAcces.addEventListener('click',function() {
-            window.location.href = '/login';
-            })
-        }
-        });
     </script>
 
 </body>

@@ -22,14 +22,14 @@
     <div class="centeredDiv">
         
         <div>
-            <p class = "gothic">Estado de objetivos mensuales e Historicos</p>
+            <p class = "gothic">{{username}}</p>
         </div>
             <div class="horizontal">
                 <div class="margin">
-                <button type="button" id="acces"> Acceso tienda </button>
+                <button type="button" id="graphs"> Graficas </button>
                 </div>
                 <div class="margin">
-                <button type="button" id="register"> Registrar tienda </button>
+                <button type="button" id="objetives"> Objetivos </button>
                 </div>
             </div>
     </div>
@@ -44,17 +44,17 @@
     <!-- El script debe ir al final del body para asegurar que el DOM esté listo -->
     <script>
     document.addEventListener('DOMContentLoaded', function() {
-        const btnRegister = document.getElementById('register');
-        const btnAcces = document.getElementById('acces');
-        if (btnRegister) {
+        const btnGraphs = document.getElementById('graphs');
+        const btnObjective = document.getElementById('objective');
+        if (btnGraphs) {
             btnRegister.addEventListener('click', function() {
-            window.location.href = '/register';
+            window.location.href = '/home';
             });
         }
 
-        if (btnAcces) {
+        if (btnObjective) {
             btnAcces.addEventListener('click',function() {
-            window.location.href = '/login';
+            window.location.href = '/years';
             })
         }
         });

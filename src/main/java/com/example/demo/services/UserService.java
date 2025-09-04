@@ -1,5 +1,6 @@
 package com.example.demo.services;
 
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.models.User;
@@ -9,9 +10,11 @@ import com.example.demo.repositories.UserRepo;
 public class UserService {
 
     private final UserRepo userRepo;
+    private final PasswordEncoder passwordEncoder;
 
-    public UserService(UserRepo userRepo){
+    public UserService(UserRepo userRepo, PasswordEncoder passwordEncoder){
         this.userRepo = userRepo;
+        this.passwordEncoder = passwordEncoder;
     }
 
 
@@ -19,11 +22,22 @@ public class UserService {
         return userRepo.save(user);
     }
 
-    //in the shor future this should store the hashed pass
     public User newUser(String username, String password){
         User user = new User();
         user.setUsername(username);
-        user.setPassword(password);
+        user.setPassword(passwordEncoder.encode(password));
+        System.err.println("para guardar");
         return userRepo.save(user);
     }
+
+    public boolean correctPass(String pass, User user){
+
+        return passwordEncoder.matches(pass, user.getPassword());
+    }
+
+    public User getUserByUsername(String username){
+
+        return userRepo.findByUsername(username);
+    }
+
 }

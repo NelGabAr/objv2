@@ -1,0 +1,112 @@
+
+    .body{
+        background-color: #E6BB97;
+    }
+    .centeredDiv{
+        padding: 50px;
+        display: grid;
+        align-items: center;
+        justify-content: center;
+        background-color: #C48B5C;
+        box-shadow: inset -4px -4px #7A4B25;
+    }
+    .gothic{
+        font-family: 'jacquard 12';
+        font-size: 60px;
+    }
+    
+    .gothic-little{
+        font-family: 'jacquard 12';
+        font-size: 30px;
+    }
+
+    .vertical{
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    margin-left:  5%;
+    margin: 3%;
+    }
+    .centered{
+        display: grid;
+        align-items: center;
+        align-content: center;
+        padding: 20px;
+    }
+button {
+  font-family: 'jacquard 12';
+  font-size: 30px;
+  border: none;
+  outline: 1px dotted rgb(37, 37, 37);
+  outline-offset: -4px;
+  cursor: pointer;
+  background: #916844;
+  box-shadow:
+    inset -1px -1px #292929,
+    inset 1px 1px #C48B5C,
+    inset -2px -2px #C48B5C,
+    inset 2px 2px #7A4B25;
+  letter-spacing: 2px;
+  padding: 15px 40px;
+  
+}
+
+button:active {
+  box-shadow:
+    inset -1px -1px #fff,
+    inset 1px 1px #292929,
+    inset -2px -2px #ffffff,
+    inset 2px 2px rgb(158, 158, 158);
+}
+
+.horizontal{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left:  5%;
+    margin: 3%;
+    
+
+}
+    
+.outside{
+
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    place-items: center;
+    
+    padding: 200px;
+
+}
+.margin{
+    padding: 30px;
+}
+.interiorFormDiv{
+  display: flex; /* Convierte el div en un contenedor flex */
+  flex-direction: column;
+  justify-content: space-between;
+  /* Por defecto, los elementos se colocan en fila (flex-direction: row) */
+  /* Si quieres que se pongan en columna y ocupen el alto: */
+  /* flex-direction: column; */
+
+  width: 100%; /* El contenedor debe tener un ancho o alto definido */
+  height: 100%; /* Opcional: Define una altura para que los elementos se estiren verticalmente si es columna */
+}
+
+.elemento-flex {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 10px;
+}
+.insideLeft{
+    font-family: 'jacquard 12';
+    font-size: 30px;
+    padding-right: 10px;
+}
+
+
+
+
+    

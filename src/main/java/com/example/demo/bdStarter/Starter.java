@@ -28,12 +28,12 @@ public class Starter {
 
     @PostConstruct
     public void start(){
-
+/*
     User user = userService.newUser("paco","pacopass");
     Year year = yearService.saveNewYear(2025,user);
     
     monthFactory.startNewMonth("enero", 31, year);
-
+*/
     }
 
 
