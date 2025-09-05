@@ -1,10 +1,9 @@
 package com.example.demo.bdStarter;
 
 import com.example.demo.factories.MonthFactory;
-import com.example.demo.models.User;
-import com.example.demo.models.Year;
-import com.example.demo.services.UserService;
-import com.example.demo.services.YearService;
+import com.example.demo.models.*;
+import com.example.demo.services.*;
+
 
 import org.springframework.stereotype.Component;
 import jakarta.annotation.PostConstruct;
