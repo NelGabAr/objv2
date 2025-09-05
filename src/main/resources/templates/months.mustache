@@ -22,18 +22,18 @@
     <div class="centeredDiv">
         
         <div>
-            <p class = "gothic">{{username}}</p>
+            <p class = "gothic"></p>
         </div>
             <div class="horizontal">
-                {{#years}}
+                {{#months}}
                 <div class="margin">
                 <form action="/years" method="POST">
-                    <input type="hidden" name="number" value={{number}}>
+                    <input type="hidden" name="name" value={{name}}>
                     <input type="hidden" name="{{_csrf.parameterName}}" value="{{_csrf.token}}"/>
-                    <button type="submit" id="year"> {{number}} </button>
+                    <button type="submit" id="month"> {{name}} </button>
                 </form>
                 </div>
-                {{/years}}
+                {{/months}}
                 <div class="margin">
                 <button type="button" id="newYear"> nuevo año </button>
                 </div>

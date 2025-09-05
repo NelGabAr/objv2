@@ -12,26 +12,39 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.support.SessionAttributeStore;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.example.demo.factories.MonthFactory;
+import com.example.demo.models.Month;
 import com.example.demo.models.User;
 import com.example.demo.models.Year;
 import com.example.demo.pogos.UserRegisterPogo;
+import com.example.demo.repositories.MonthRepo;
 import com.example.demo.services.DayService;
+import com.example.demo.services.MonthService;
 import com.example.demo.services.UserService;
 import com.example.demo.services.YearService;
 
+import ch.qos.logback.core.model.Model;
 import jakarta.servlet.http.HttpServletRequest;
-
 
 
 @Controller
 @RequestMapping("/")
 public class LoginControllers {
 
+    private final MonthService monthService;
+
+    private final MonthRepo monthRepo;
+
     private final UserService userService;
     private final YearService yearService;
-    public LoginControllers(UserService userService, YearService yearService){
+    private final MonthFactory monthFactory;
+
+    public LoginControllers(UserService userService, YearService yearService, MonthRepo monthRepo, MonthService monthService, MonthFactory monthFactory){
         this.userService = userService;
         this.yearService = yearService;
+        this.monthRepo = monthRepo;
+        this.monthService = monthService;
+        this.monthFactory = monthFactory;
     }
 
 
@@ -91,7 +104,7 @@ public class LoginControllers {
     }
     
     @GetMapping("/years")
-    public ModelAndView years(Map<String,Object> model, HttpServletRequest request){
+    public ModelAndView showYears(Map<String,Object> model, HttpServletRequest request){
         CsrfToken csrfToken = (CsrfToken) request.getAttribute(CsrfToken.class.getName());
         model.put("_csrf", csrfToken);
 
@@ -108,8 +121,35 @@ public class LoginControllers {
         model.put("years", years);
         model.put("username", username);
         return new ModelAndView("years",model);
+    }
+    @PostMapping("/years")
+    public ModelAndView getYears(@RequestParam String number, HttpServletRequest request, Map<String,Object> model ){
+        
+        CsrfToken csrfToken = (CsrfToken) request.getAttribute(CsrfToken.class.getName());
+        model.put("_csrf", csrfToken);
+
+        System.out.println("post");
+        System.out.println(number);
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName();
+        Year yearToModel = new Year();
 
 
+        User user =userService.getUserByUsername(username);
+        List<Year> years = user.getYears();
+        for (Year year : years) {
+            if(year.getNumber() == Integer.parseInt(number)) yearToModel =year;
+        }
+
+        List <Month> months = yearToModel.getMonths();
+        if (months.isEmpty()) {
+            monthFactory.startNewMonth("Enero", 31, yearToModel);
+        }
+
+        model.put("months", months);
+
+        return new ModelAndView("months",model);
     }
     
 
