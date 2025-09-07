@@ -2,6 +2,7 @@ package com.example.demo.controllers;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -116,6 +117,16 @@ public class LoginControllers {
         model.put("months", months);
 
         return new ModelAndView("months",model);
+    }
+
+    @GetMapping("/table")
+    public ModelAndView showTable(Map<String,Object> model, HttpServletRequest request,@RequestParam Long monthId){
+        CsrfToken csrfToken = (CsrfToken) request.getAttribute(CsrfToken.class.getName());
+        model.put("_csrf", csrfToken);
+        
+        model.put("month", monthService.getById(monthId));
+
+        return new ModelAndView("table",model);
     }
     
 

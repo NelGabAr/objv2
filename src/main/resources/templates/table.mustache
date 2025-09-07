@@ -22,21 +22,16 @@
     <div class="centeredDiv">
         
         <div>
-            <p class = "gothic"></p>
+            <p class = "gothic">pantalla de tabla</p>
         </div>
-            <div class="horizontal">
-                {{#months}}
-                <div class="margin">
-                <form action="/table" method="GET">
-                    <input type="hidden" name="monthId" value={{Id}}>
-                    <button type="submit" id="month"> {{name}} </button>
-                </form>
-                </div>
-                {{/months}}
-                <div class="margin">
-                <button type="button" id="newYear"> nuevo mes </button>
-                </div>
-            </div>
+            <form action="" method="POST" class= "table">
+                
+                {{#month.days}}
+                    <input type="text" name="{{Id}}" id="{{Id}}" class ="casilla">
+                {{/month.days}}
+                
+                <button type="submit">cargar</button>
+            </form>
     </div>
 </div>
     

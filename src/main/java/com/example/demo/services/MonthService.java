@@ -4,6 +4,8 @@ import com.example.demo.models.Month;
 import com.example.demo.models.Year;
 import com.example.demo.repositories.MonthRepo;
 
+import java.util.Optional;
+
 import org.springframework.stereotype.*;
 
 
@@ -27,5 +29,10 @@ public class MonthService {
         return monthRepo.save(month);
     }
 
-
+    public Month getById(Long id){
+        Month month = monthRepo.findById(id)
+                                .orElseThrow(()-> new RuntimeException("mes no encontrado"));
+                                
+        return month;
+    }
 }
