@@ -15,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.example.demo.factories.MonthFactory;
 import com.example.demo.models.*;
+import com.example.demo.pogos.DayPogo;
 import com.example.demo.pogos.UserRegisterPogo;
 import com.example.demo.services.*;
 import jakarta.servlet.http.HttpServletRequest;
@@ -129,6 +130,23 @@ public class LoginControllers {
         return new ModelAndView("table",model);
     }
     
+@PostMapping("/table")
+    public ModelAndView editTable(Map<String,Object> model, HttpServletRequest request,@RequestParam Long monthId, 
+    @RequestParam List<String> totalSells, @RequestParam List<String> morningSells, @RequestParam List<String> afternoonSells, @RequestParam List<String> holiday){
+        CsrfToken csrfToken = (CsrfToken) request.getAttribute(CsrfToken.class.getName());
+        model.put("_csrf", csrfToken);
+        
+        model.put("month", monthService.getById(monthId));
+        System.out.println(totalSells);
+        System.out.println(morningSells);
+        System.out.println(afternoonSells);
+        System.out.println(holiday);
 
+        //crear month service que rellene los dias con los datos de las listas y el id del mes
+
+
+        return new ModelAndView("table",model);
+    }
+    
 
 }

@@ -94,6 +94,15 @@ button:active {
   height: 100%; /* Opcional: Define una altura para que los elementos se estiren verticalmente si es columna */
 }
 
+.body-table{
+
+    display: inline-table;
+    align-items: center;
+    justify-content: center;
+    margin-left:  5%;
+    margin: 3%;
+}
+
 .elemento-flex {
   display: flex;
   flex-direction: row;
@@ -106,11 +115,21 @@ button:active {
     padding-right: 10px;
 }
 
-.table{
-}
+    .table {
+        display: grid;
+        /* Define 3 columnas de igual ancho. Puedes ajustarlo a 4, 5, etc. */
+        grid-template-columns: repeat(7, 1fr);
+        /* Espacio entre las celdas (divs de días) */
+        gap: 5px;
+        padding: 5px; /* Un poco de padding alrededor */
+        max-width: 1200px; /* O el ancho que prefieras para tu tabla */
+        margin: 0; /* Para centrar el grid en la página */
+    }
+
 .casilla{
     background-color: #E6BB97;
     padding-right: 5px;;
+
 }
 
     

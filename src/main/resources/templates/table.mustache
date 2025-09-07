@@ -18,25 +18,37 @@
 
 
 <body class = "body">
-<div class = "outside">
-    <div class="centeredDiv">
-        
+<div display="body-table">
         <div>
             <p class = "gothic">pantalla de tabla</p>
         </div>
             <form action="" method="POST" class= "table">
+                <input type="hidden" name="{{_csrf.parameterName}}" value="{{_csrf.token}}">
+                <input type="hidden" name="monthId" value="{{month.Id}}">
                 
                 {{#month.days}}
-                    <input type="text" name="{{Id}}" id="{{Id}}" class ="casilla">
+                <div class="vertical">
+                    <input type="text" name="totalSells"  value="{{totalSells}}">
+                    <input type="text" name="morningSells"  value="{{morningSells}}">
+                    <input type="text" name="afternoonSells"  value="{{afternoonSells}}">
+
+                    
+
+                    <select name="holiday">
+                        <option value="false">laboral</option>
+                        <option value="true">finde</option>
+                        <option value="true">festivo</option>
+                
+</select>
+                </div>    
                 {{/month.days}}
                 
                 <button type="submit">cargar</button>
             </form>
-    </div>
-</div>
+
     
 
-
+</div>
 
     <!-- JavaScript de Bootstrap desde CDN -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
