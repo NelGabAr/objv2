@@ -36,16 +36,24 @@
 
                     <select name="holiday">
                         <option value="false">laboral</option>
-                        <option value="true">finde</option>
-                        <option value="true">festivo</option>
+                        <option value="true" {{selected}}>no laboral</option>
                 
 </select>
-                </div>    
+                </div>
                 {{/month.days}}
                 
                 <button type="submit">cargar</button>
             </form>
-
+<div>
+{{totalmorningsells}}
+{{totalafternoonsells}}
+{{totalsells}}
+{{averagesells}}
+{{averagemorningsells}}
+{{averageafternoonsells}}
+{{averagebdsells}}
+{{averagehdsells}}
+</div>
     
 
 </div>

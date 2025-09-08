@@ -1,5 +1,6 @@
 package com.example.demo.controllers;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -92,6 +93,8 @@ public class LoginControllers {
         if(years.isEmpty()){
             yearService.saveNewYear(2024, user);
         }
+                years = user.getYears();
+
         model.put("years", years);
         model.put("username", username);
         return new ModelAndView("years",model);
@@ -114,8 +117,9 @@ public class LoginControllers {
         if (months.isEmpty()) {
             monthFactory.startNewMonth("Enero", 31, yearToModel);
         }
+        
 
-        model.put("months", months);
+        model.put("months", yearToModel.getMonths());
 
         return new ModelAndView("months",model);
     }
@@ -124,8 +128,18 @@ public class LoginControllers {
     public ModelAndView showTable(Map<String,Object> model, HttpServletRequest request,@RequestParam Long monthId){
         CsrfToken csrfToken = (CsrfToken) request.getAttribute(CsrfToken.class.getName());
         model.put("_csrf", csrfToken);
-        
-        model.put("month", monthService.getById(monthId));
+        Month month = monthService.getById(monthId);
+
+        model.put("month", month);
+        model.put("totalsells", month.totalSells());
+        model.put("totalmorningsells",month.totalMorningSells());
+        model.put("totalafternoonsells",month.totalAfternoonSells());
+        model.put("averagebdsells",month.averageBDsells());
+        model.put("averagehdsells",month.averageHDsells());
+        model.put("averagesells",month.averageSells());
+        model.put("averagemorningsells",month.averageMorningSells());
+        model.put("averageafternoonsells",month.averageAfternoonSells());
+        model.put("month", month);
 
         return new ModelAndView("table",model);
     }
@@ -135,18 +149,49 @@ public class LoginControllers {
     @RequestParam List<String> totalSells, @RequestParam List<String> morningSells, @RequestParam List<String> afternoonSells, @RequestParam List<String> holiday){
         CsrfToken csrfToken = (CsrfToken) request.getAttribute(CsrfToken.class.getName());
         model.put("_csrf", csrfToken);
+        Month month = monthService.getById(monthId);
         
-        model.put("month", monthService.getById(monthId));
-        System.out.println(totalSells);
-        System.out.println(morningSells);
-        System.out.println(afternoonSells);
-        System.out.println(holiday);
+        List<Double> LtotalSells = stringToDouble(totalSells);
+        List<Double> LmorningSells = stringToDouble(morningSells);
+        List<Double> LafternoonSells = stringToDouble(afternoonSells);
 
-        //crear month service que rellene los dias con los datos de las listas y el id del mes
+        System.out.println(LtotalSells);
+        System.out.println(LmorningSells);
+        System.out.println(LafternoonSells);
+
+
+        monthService.uploadMonth(month, LtotalSells, LmorningSells, LafternoonSells, holiday);
+        month = monthService.getById(monthId);
+
+        
+
+
+        model.put("month", month);
+        model.put("totalsells", month.totalSells());
+        model.put("totalmorningsells",month.totalMorningSells());
+        model.put("totalafternoonsells",month.totalAfternoonSells());
+        model.put("averagebdsells",month.averageBDsells());
+        model.put("averagehdsells",month.averageHDsells());
+        model.put("averagesells",month.averageSells());
+        model.put("averagemorningsells",month.averageMorningSells());
+        model.put("averageafternoonsells",month.averageAfternoonSells());
+        model.put("month", month);
+
+        
+
 
 
         return new ModelAndView("table",model);
     }
     
+    public List<Double> stringToDouble(List<String> strings){
+        List<Double> doubles = new ArrayList<>();
+        for (String string : strings) {
+            doubles.add(Double.parseDouble(string));
+        }
 
+    return doubles;
+    }
+
+    
 }

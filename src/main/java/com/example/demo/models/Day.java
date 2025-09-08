@@ -16,7 +16,7 @@ public class Day {
     private double afternoonSells = 0.0;
     private double totalSells = 0.0;
     private boolean holiday = false;
-
+    private String selected = " ";
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "month_id")
     private Month month;
@@ -62,6 +62,22 @@ public class Day {
     }
     public Month getMonth(){
         return this.month;
+    }
+
+    public Long getId() {
+        return Id;
+    }
+
+    public void setId(Long id) {
+        Id = id;
+    }
+
+    public String getSelected() {
+        return selected;
+    }
+
+    public void setSelected(String selected) {
+        this.selected = selected;
     }
 
 }
