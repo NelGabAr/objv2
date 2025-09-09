@@ -39,9 +39,10 @@ public class MonthService {
         return month;
     }
 
-    public Month uploadMonth(Month month, List<Double> totalSells, List<Double> morningSells, List<Double> afternoonSells, List<String> holidays){
+    public Month uploadMonth(Month month, List<Double> totalSells, List<Double> morningSells, List<Double> afternoonSells, List<String> holidays, Double goal){
         List<Day> days = month.getDays();
-        
+        month.setGoal(goal);
+
         for(int i=0;i<days.size();i++){
             month.getDays().get(i).setTotalSells(totalSells.get(i));
             month.getDays().get(i).setMorningSells(morningSells.get(i));

@@ -1,6 +1,7 @@
 package com.example.demo.controllers;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -15,11 +16,15 @@ import org.springframework.web.servlet.ModelAndView;
 
 
 import com.example.demo.factories.MonthFactory;
+import com.example.demo.factories.YearFactory;
 import com.example.demo.models.*;
 import com.example.demo.pogos.DayPogo;
 import com.example.demo.pogos.UserRegisterPogo;
 import com.example.demo.services.*;
 import jakarta.servlet.http.HttpServletRequest;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 
 @Controller
@@ -30,12 +35,14 @@ public class LoginControllers {
     private final YearService yearService;
     private final MonthService monthService;
     private final MonthFactory monthFactory;
+    private final YearFactory yearFactory;
 
-    public LoginControllers(UserService userService, YearService yearService, MonthService monthService, MonthFactory monthFactory){
+    public LoginControllers(UserService userService, YearService yearService, MonthService monthService, MonthFactory monthFactory, YearFactory yearFactory){
         this.userService = userService;
         this.yearService = yearService;
         this.monthService = monthService;
         this.monthFactory = monthFactory;
+        this.yearFactory = yearFactory;
     }
 
 
@@ -76,6 +83,13 @@ public class LoginControllers {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String username = authentication.getName();
         model.put("username", username);
+
+        User user = userService.getUserByUsername(username);
+        List<Year> years = user.getYears();
+        if(years.isEmpty()){
+            yearFactory.newYear(2024, user);
+        }
+
     return new ModelAndView("home",model);
     }
 
@@ -90,13 +104,11 @@ public class LoginControllers {
         
         User user = userService.getUserByUsername(username);
         List<Year> years = user.getYears();
-        if(years.isEmpty()){
-            yearService.saveNewYear(2024, user);
-        }
                 years = user.getYears();
 
         model.put("years", years);
         model.put("username", username);
+
         return new ModelAndView("years",model);
     }
 
@@ -121,14 +133,50 @@ public class LoginControllers {
 
         model.put("months", yearToModel.getMonths());
 
+
+        
         return new ModelAndView("months",model);
+        
     }
+
+    @GetMapping("/newYear")
+    public String newYear(Map<String, Object> model, HttpServletRequest request){
+
+        CsrfToken csrfToken = (CsrfToken) request.getAttribute(CsrfToken.class.getName());
+        model.put("_csrf", csrfToken);
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName();
+        Year yearToModel = new Year();
+        User user =userService.getUserByUsername(username);
+        List<Year> years = user.getYears();
+        
+        int number = years.getLast().getNumber();
+        
+        yearFactory.newYear(number+1, user);
+
+        
+        
+
+
+
+
+
+
+
+        return "redirect:/years";
+    }
+
+    
+    
+
 
     @GetMapping("/table")
     public ModelAndView showTable(Map<String,Object> model, HttpServletRequest request,@RequestParam Long monthId){
         CsrfToken csrfToken = (CsrfToken) request.getAttribute(CsrfToken.class.getName());
         model.put("_csrf", csrfToken);
         Month month = monthService.getById(monthId);
+
+
 
         model.put("month", month);
         model.put("totalsells", month.totalSells());
@@ -140,13 +188,14 @@ public class LoginControllers {
         model.put("averagemorningsells",month.averageMorningSells());
         model.put("averageafternoonsells",month.averageAfternoonSells());
         model.put("month", month);
+        model.put("objective", month.getGoal());
 
         return new ModelAndView("table",model);
     }
     
 @PostMapping("/table")
     public ModelAndView editTable(Map<String,Object> model, HttpServletRequest request,@RequestParam Long monthId, 
-    @RequestParam List<String> totalSells, @RequestParam List<String> morningSells, @RequestParam List<String> afternoonSells, @RequestParam List<String> holiday){
+    @RequestParam List<String> totalSells, @RequestParam String objective,@RequestParam List<String> morningSells, @RequestParam List<String> afternoonSells, @RequestParam List<String> holiday){
         CsrfToken csrfToken = (CsrfToken) request.getAttribute(CsrfToken.class.getName());
         model.put("_csrf", csrfToken);
         Month month = monthService.getById(monthId);
@@ -154,13 +203,14 @@ public class LoginControllers {
         List<Double> LtotalSells = stringToDouble(totalSells);
         List<Double> LmorningSells = stringToDouble(morningSells);
         List<Double> LafternoonSells = stringToDouble(afternoonSells);
+        Double goal = Double.parseDouble(objective);
 
         System.out.println(LtotalSells);
         System.out.println(LmorningSells);
         System.out.println(LafternoonSells);
 
 
-        monthService.uploadMonth(month, LtotalSells, LmorningSells, LafternoonSells, holiday);
+        monthService.uploadMonth(month, LtotalSells, LmorningSells, LafternoonSells, holiday, goal);
         month = monthService.getById(monthId);
 
         
@@ -193,5 +243,6 @@ public class LoginControllers {
     return doubles;
     }
 
+   
     
 }

@@ -31,6 +31,10 @@
                 <div class="margin">
                 <button type="button" id="objectives"> Objetivos </button>
                 </div>
+                <div class="margin">
+                <button type="button" id="logout"> LogOut </button>
+                </div>
+                
             </div>
     </div>
 </div>
@@ -46,6 +50,7 @@
     document.addEventListener('DOMContentLoaded', function() {
         const btnGraphs = document.getElementById('graphs');
         const btnObjective = document.getElementById('objectives');
+        const btnLogout = document.getElementById('logout');
         if (btnGraphs) {
             btnGraphs.addEventListener('click', function() {
             window.location.href = '/home';
@@ -55,6 +60,12 @@
         if (btnObjective) {
             btnObjective.addEventListener('click',function() {
             window.location.href = '/years';
+            });
+        }
+
+        if (btnLogout) {
+            btnLogout.addEventListener('click',function() {
+            window.location.href = '/logout';
             });
         }
         });

@@ -37,6 +37,10 @@
                 <div class="margin">
                 <button type="button" id="newYear"> nuevo año </button>
                 </div>
+
+                <div class="margin">
+                <button type="button" id="retroceder"> retroceder </button>
+                </div>
             </div>
     </div>
 </div>
@@ -49,7 +53,22 @@
     
     <!-- El script debe ir al final del body para asegurar que el DOM esté listo -->
     <script>
-    
+    const btnBack = document.getElementById('retroceder');
+    const btnNew = document.getElementById('newYear');
+
+    if (btnBack) {
+            btnBack.addEventListener('click',function() {
+            
+            window.location.href = '/home';
+            });
+        }
+    if (btnNew) {
+            btnNew.addEventListener('click',function() {
+            
+            window.location.href = '/newYear';
+            });
+        }
+         
     </script>
 
 </body>

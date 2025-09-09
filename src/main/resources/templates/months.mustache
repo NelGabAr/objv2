@@ -24,7 +24,7 @@
         <div>
             <p class = "gothic"></p>
         </div>
-            <div class="horizontal">
+            <div class="table">
                 {{#months}}
                 <div class="margin">
                 <form action="/table" method="GET">
@@ -33,9 +33,12 @@
                 </form>
                 </div>
                 {{/months}}
+                
+
                 <div class="margin">
-                <button type="button" id="newYear"> nuevo mes </button>
+                <button type="button" id="retroceder"> retroceder </button>
                 </div>
+
             </div>
     </div>
 </div>
@@ -48,7 +51,13 @@
     
     <!-- El script debe ir al final del body para asegurar que el DOM esté listo -->
     <script>
-    
+    const btnBack = document.getElementById('retroceder');
+
+    if (btnBack) {
+            btnBack.addEventListener('click',function() {
+            window.location.href = '/years';
+            });
+        }
     </script>
 
 </body>
