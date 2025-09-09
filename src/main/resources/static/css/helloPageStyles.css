@@ -184,4 +184,18 @@ p{
 
 }
 
+
+
+
+
+
+.ranita {
+  position: absolute; /* Esto permite posicionarla libremente dentro de su padre relativo */
+  bottom: 0; /* La pega al borde inferior del contenedor */
+  right: 0;  /* La pega al borde derecho del contenedor */
+  width: 100px; /* Ajusta el tamaño de la imagen si es necesario */
+  height: auto; /* Mantiene la proporción */
+}
+
+
     
