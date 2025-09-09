@@ -17,49 +17,91 @@
 
 
 
-<body class = "body">
-<div display="body-table">
-        <div>
-            <p class = "gothic">pantalla de tabla</p>
-        </div>
-            <form action="" method="POST" class= "table">
-                <input type="text" name="objective"  value="{{month.goal}}">
-                <input type="hidden" name="{{_csrf.parameterName}}" value="{{_csrf.token}}">
-                <input type="hidden" name="monthId" value="{{month.Id}}">
-                
-                {{#month.days}}
-                <div class="vertical">
-                    <input type="text" name="totalSells"  value="{{totalSells}}">
-                    <input type="text" name="morningSells"  value="{{morningSells}}">
-                    <input type="text" name="afternoonSells"  value="{{afternoonSells}}">
-
-                    
-
-                    <select name="holiday">
-                        <option value="false">laboral</option>
-                        <option value="true" {{selected}}>no laboral</option>
-                
-</select>
-                </div>
-                {{/month.days}}
-                
-                <button type="submit">cargar</button>
-            </form>
-<div>
-{{totalmorningsells}}
-{{totalafternoonsells}}
-{{totalsells}}
-{{averagesells}}
-{{averagemorningsells}}
-{{averageafternoonsells}}
-{{averagebdsells}}
-{{averagehdsells}}
+<body>
+<div style="display:grid; box-shadow: inset 0px -5px #1E6091; background-color: #184E77;">
+<p class = "gothic">{{month.name}}</p>
 </div>
-    
+    <form action="" method="POST" class ="table-body">
+        
+        <div class = "container">
+            <div>
+                <p>Objetivo</p>
+                <input type="text" name="objective"  value="{{month.goal}}" style="max-width: 100px">
+            </div>
+            <div>
+                <p>ventas manana:</p>
+                <p>{{totalmorningsells}}</p>
+            </div>
+            <div>
+                <p>ventas tarde:</p>
+                <p>{{totalafternoonsells}}</p>
+            </div>
+            <div>
+                <p>ventas totales:</p>
+                <p>{{totalsells}}</p>
+            </div>
+            <div>
+                <p>media de ventas:</p>
+                <p>{{averagesells}}</p>
+            </div>
+            <div>
+                <p>media de manana:</p>
+                <p>{{averagemorningsells}}</p>
+            </div>
+            <div>
+                <p>media de tarde:</p>
+                <p>{{averageafternoonsells}}</p>
+            </div>
 
-                <div class="margin">
-                <button type="button" id="retroceder"> retroceder </button>
+            <div>
+                <p>media laborales:</p>
+                <p>{{averagebdsells}}</p>
+            </div>
+            <div>
+                <p>media festivos:</p> 
+                <p>{{averagehdsells}}</p>
+            </div>
+            <div>
+                <p>dias esperados:</p> 
+                <p>{{remainingDays}}</p>
+            </div>
+        </div>
+        
+<input type="hidden" name="{{_csrf.parameterName}}" value="{{_csrf.token}}">
+<input type="hidden" name="monthId" value="{{month.Id}}">
+        <div class="table">
+            <div class="casilla-inicio">
+                <h4 style="background-color: transparent; margin: 0; padding: 5px;">ventas manana</h4>
+                <h4 style="background-color: transparent;  margin: 0; padding: 5px;">ventas tarde</h4>
+                <h4 style="background-color: transparent; margin: 0; padding: 5px;">ventas totales</h4>
+            </div>
+                {{#month.days}}
+            <div class= "casilla-ext">
+
+                <div class="casilla">
+                    <input type="text" class="inputs-interiores" name="morningSells"  value="{{morningSells}}">
+                    <input type="text" class="inputs-interiores" name="afternoonSells"  value="{{afternoonSells}}">
+                    <input type="text" class="inputs-interiores" name="totalSells"  value="{{totalSells}}">
                 </div>
+            <select name="holiday">
+                <option value="false">laboral</option>
+                <option value="true" {{selected}}>no laboral</option>
+            </select>
+            </div>
+        
+                {{/month.days}}
+        </div>    
+            <div>
+                <button type="submit">cargar</button>
+                <button type="button" id="retroceder"> retroceder </button>
+            </div>
+    </form>
+            <
+                
+
+   
+
+                
 
 </div>
 

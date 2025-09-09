@@ -135,6 +135,7 @@ public class Month {
     //Predictions
     public double remainingDays(){
         if (this.goal == 0 ) return 0;
+        if (this.averageSells()== 0) return 0;
         return remainingSells()/averageSells();
     }
 

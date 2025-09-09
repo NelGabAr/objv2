@@ -1,7 +1,19 @@
+.container {
+	display: grid;
+	grid-template-columns: repeat(11, 150px);
+	max-width: inherit;
+	max-height: fit-content;
+	margin: 0;
+	background-color: #34A0A4;
+	box-shadow: 5px 5px #168AAD, -5px -5px #168AAD;
+	box-sizing: initial;
+}
+    
 
-    .body{
-        background-color: #E6BB97;
-    }
+    
+
+
+
     .centeredDiv{
         padding: 50px;
         display: grid;
@@ -27,6 +39,16 @@
     margin-left:  5%;
     margin: 3%;
     }
+    .casilla-ext{
+    display: flex;
+    flex-direction: column;
+    background-color: transparent;
+    
+    margin-left:  0;
+    margin: 0;
+    }
+
+    
     .centered{
         display: grid;
         align-items: center;
@@ -58,6 +80,7 @@ button:active {
     inset -2px -2px #ffffff,
     inset 2px 2px rgb(158, 158, 158);
 }
+
 
 .horizontal{
     display: flex;
@@ -94,14 +117,7 @@ button:active {
   height: 100%; /* Opcional: Define una altura para que los elementos se estiren verticalmente si es columna */
 }
 
-.body-table{
 
-    display: inline-table;
-    align-items: center;
-    justify-content: center;
-    margin-left:  5%;
-    margin: 3%;
-}
 
 .elemento-flex {
   display: flex;
@@ -115,20 +131,56 @@ button:active {
     padding-right: 10px;
 }
 
-    .table {
-        display: grid;
-        /* Define 3 columnas de igual ancho. Puedes ajustarlo a 4, 5, etc. */
-        grid-template-columns: repeat(7, 1fr);
-        /* Espacio entre las celdas (divs de días) */
-        gap: 5px;
-        padding: 5px; /* Un poco de padding alrededor */
-        max-width: 1200px; /* O el ancho que prefieras para tu tabla */
-        margin: 0; /* Para centrar el grid en la página */
-    }
 
+
+
+
+    .table {
+	display: grid;
+	grid-template-columns: repeat(8, 200px);
+	row-gap: 10px;
+	padding: 5px;
+	max-width: fit-content;
+	/* margin: 0; */
+	background-color: #76C893;
+	column-gap: 42px;
+	box-shadow: -5px -5px #52B69A, 5px 5px #52B69A;
+}
+
+.table > :not(caption) > * > * {
+	padding: .5rem .5rem;
+	color: var(--bs-table-color-state,var(--bs-table-color-type,var(--bs-table-color)));
+	background-color: #c7f9cc;
+	border-bottom-width: var(--bs-border-width);
+	box-shadow: inset 0 0 0 9999px var(--bs-table-bg-state,var(--bs-table-bg-type,var(--bs-table-accent-bg)));
+}
+
+select {
+	word-wrap: normal;
+	background-color: #41B569;
+
+}
+
+.casilla-inicio {
+	display: flex;
+	flex-direction: column;
+	background-color: #41B569;
+}
 .casilla{
-    background-color: #E6BB97;
-    padding-right: 5px;;
+    display: flex;
+    flex-direction: column;
+    background-color: transparent;
+
+}
+
+p{
+    background-color: transparent;
+}
+.table-body{
+
+    display: flex;
+    flex-direction: column;
+    background-color: #1A759F;
 
 }
 

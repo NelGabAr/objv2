@@ -189,6 +189,7 @@ public class LoginControllers {
         model.put("averageafternoonsells",month.averageAfternoonSells());
         model.put("month", month);
         model.put("objective", month.getGoal());
+        model.put("remainingDays",month.remainingDays());
 
         return new ModelAndView("table",model);
     }
@@ -225,6 +226,7 @@ public class LoginControllers {
         model.put("averagesells",month.averageSells());
         model.put("averagemorningsells",month.averageMorningSells());
         model.put("averageafternoonsells",month.averageAfternoonSells());
+        model.put("remainingDays",month.remainingDays());
         model.put("month", month);
 
         
