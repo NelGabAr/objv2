@@ -21,25 +21,22 @@
 <div class = "outside">
     <div class="centeredDiv">
         
-        <div>
-            <p class = "gothic"></p>
-        </div>
-            <div class="table">
-                {{#months}}
-                <div class="margin">
+        <div class="meses">
+            {{#months}}
+            <div class="margin">
                 <form action="/table" method="GET">
                     <input type="hidden" name="monthId" value={{Id}}>
                     <button type="submit" id="month"> {{name}} </button>
                 </form>
-                </div>
-                {{/months}}
+            </div>
+            {{/months}}
                 
 
-                <div class="margin">
+            <div class="margin">
                 <button type="button" id="retroceder"> retroceder </button>
-                </div>
-
             </div>
+
+        </div>
     </div>
 </div>
     
