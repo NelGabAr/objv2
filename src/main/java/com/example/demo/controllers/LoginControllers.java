@@ -245,6 +245,15 @@ public class LoginControllers {
     return doubles;
     }
 
-   
+    @GetMapping("/graphs")
+    public ModelAndView graphs(Map<String,Object> model, HttpServletRequest request){
+
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName();
+        User user =userService.getUserByUsername(username);
+        model.put("user", user);
+        return new ModelAndView("graphs",model);
+    }
     
 }

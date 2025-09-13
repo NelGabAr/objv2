@@ -21,8 +21,9 @@ public class DayService {
         return dayRepo.save(day);
     }
 
-    public Day saveNewDay(Month month){
+    public Day saveNewDay(Month month, int dayNumber){
         Day day = new Day();
+        day.setDayNumber(dayNumber);
         day.setMonth(month);
         return dayRepo.save(day);
     }

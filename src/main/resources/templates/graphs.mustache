@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Objetivos</title>
+    <!-- CSS de Bootstrap desde CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+
+    <link rel= "preconnect" href="https://fonts.googleapis.com">
+    <link rel= "preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href= "https://fonts.googleapis.com/css2?family=Jacquard+12&display=swap" rel="stylesheet">
+    <link rel= "stylesheet" href="/css/helloPageStyles.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+
+
+
+
+
+<body class = "body">
+<div class = "outside">
+    <div class="centeredDiv">
+        
+        <div>
+            <p class = "gothic">{{user.username}}</p>
+        </div>
+            <div class="horizontal">
+               <canvas id="ventas-enero" width="400" height="200">
+                
+               </canvas>
+
+            </div>
+    </div>
+</div>
+    
+
+
+
+   <script>
+  const ctx = document.getElementById('ventas-enero').getContext('2d');
+  new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: ['Total', 'Mañana', 'Tarde'],
+      datasets: [{
+        label: 'Ventas Enero',
+        data: [120, 50, 70], // Aquí van tus datos
+        backgroundColor: ['#4e79a7', '#f28e2b', '#e15759']
+      }]
+    },
+    options: {
+      responsive: true,
+      scales: {
+        y: { beginAtZero: true }
+      }
+    }
+  });
+</script>
+
+</body>
+</html>

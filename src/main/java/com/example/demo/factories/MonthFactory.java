@@ -29,7 +29,7 @@ public class MonthFactory {
         month = monthService.save(month);
         
         for(int i=0;i<totalDays;i++){
-            dayService.saveNewDay(month);
+            dayService.saveNewDay(month,i+1);
         }
         return monthService.save(month);
     }

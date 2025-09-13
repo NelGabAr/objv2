@@ -24,6 +24,7 @@
     <form action="" method="POST" class ="table-body">
         
         <div class = "container">
+       
             <div>
                 <p>Objetivo</p>
                 <input type="text" name="objective"  value="{{month.goal}}" style="max-width: 100px">
@@ -85,11 +86,22 @@
                     <input type="text" class="inputs-interiores" name="morningSells"  value="{{morningSells}}">
                     <input type="text" class="inputs-interiores" name="afternoonSells"  value="{{afternoonSells}}">
                     <input type="text" class="inputs-interiores" name="totalSells"  value="{{totalSells}}">
+                    
                 </div>
-            <select name="holiday">
-                <option value="false">laboral</option>
-                <option value="true" {{selected}}>no laboral</option>
-            </select>
+                <div Style="display:flex; flex-direction:row; justify-content:space-between; height:40px;">
+                    
+                    <div Style="width:-moz-available; border: 1px solid grey;">
+                    <p>
+                        dia {{dayNumber}}
+                    </p>
+                    </div>
+                    
+                    <select name="holiday">
+                        <option value="false">laboral</option>
+                        <option value="true" {{selected}}>no laboral</option>
+                    </select>
+                    
+                </div>
             </div>
         
                 {{/month.days}}
