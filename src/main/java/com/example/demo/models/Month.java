@@ -29,7 +29,8 @@ public class Month {
         for (Day day : days) {
             totalSells += day.getTotalSells();
         }
-        return totalSells;
+        double result = Math.round(totalSells * 100.0) / 100.0;
+        return result;
     }
 
 
@@ -39,7 +40,9 @@ public class Month {
         for (Day day : days) {
             totalMorningSells += day.getMorningSells();
         }
-        return totalMorningSells;
+        double result = Math.round(totalMorningSells * 100.0) / 100.0;
+        return result;
+        
     }
 
 
@@ -49,13 +52,17 @@ public class Month {
         for (Day day : days) {
             totalAfternoonSells += day.getAfternoonSells();
         }
-        return totalAfternoonSells;
+
+        double result = Math.round(totalAfternoonSells * 100.0) / 100.0;
+        return result;
+        
     }
 
 
 
     public double remainingSells(){
-        return this.goal - this.totalSells();
+
+        return Math.round((this.goal - this.totalSells())*100)/100;
     }
 
 
@@ -91,7 +98,8 @@ public class Month {
         for (Day day : days) {
             if (day.getHoliday() == true) totalHolidaySells += day.getTotalSells();
         }
-        return totalHolidaySells;
+        double result = Math.round(totalHolidaySells * 100.0) / 100.0;
+        return result;
     }
 
     public double totalBdSells(){
@@ -99,7 +107,9 @@ public class Month {
         for (Day day : days) {
             if (day.getHoliday() == false) totalBdSells += day.getTotalSells();
         }
-        return totalBdSells;
+
+        double result = Math.round(totalBdSells * 100.0) / 100.0;
+        return result;
     }
 
 
@@ -107,28 +117,39 @@ public class Month {
     //means and arithmetic thinggys
     public double averageSells(){
         if (daysPassed()==0) return 0;
-        return totalSells()/daysPassed();
+
+
+
+        return Math.round((totalSells()/daysPassed()) * 100.0) / 100.0;
+        
     }
 
     public double averageBDsells(){
         if (BdDaysPassed()==0) return 0;
-        return totalBdSells()/BdDaysPassed();
+        
+
+
+        return Math.round((totalBdSells()/BdDaysPassed()) * 100.0) / 100.0;
     }
 
     public double averageHDsells(){
         if (HdDaysPassed() == 0) return 0;
-        return totalHolidaySells()/HdDaysPassed();
+        return Math.round((totalHolidaySells()/HdDaysPassed()) * 100.0) / 100.0;
+    
+        
     }
 
     public double averageMorningSells(){
         if (daysPassed() == 0) return 0;
-        return totalMorningSells()/daysPassed();
+        
+        return Math.round((totalMorningSells()/daysPassed()) * 100.0) / 100.0;
     }
-
+    
     public double averageAfternoonSells(){
         if (daysPassed() == 0) return 0;
-        return totalAfternoonSells()/daysPassed();
+        return Math.round((totalAfternoonSells()/daysPassed()) * 100.0) / 100.0;
     }
+    
 
 
 
@@ -136,8 +157,12 @@ public class Month {
     public double remainingDays(){
         if (this.goal == 0 ) return 0;
         if (this.averageSells()== 0) return 0;
-        return remainingSells()/averageSells();
+        
+        return Math.round((remainingSells()/averageSells()) * 100.0) / 100.0;
     }
+    
+    
+    
 
     //TODO prediction by hd and bd
     //END
