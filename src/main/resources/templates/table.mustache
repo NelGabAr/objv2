@@ -135,6 +135,8 @@
             <div>
                 <button type="submit">cargar</button>
                 <button type="button" id="retroceder"> retroceder </button>
+                <button onclick="copiarDatos()">Copiar para Historico</button>
+
             </div>
     </form>
             <
@@ -159,6 +161,29 @@
             window.location.href = '/years';
             });
         }
+
+
+
+
+  function copiarDatos() {
+    const datos = [{{#month.days}}{{totalSells}},{{/month.days}},{{totalsells}}];
+    
+    
+    
+     // tus números
+    const texto = datos.join('\n'); // separa por saltos de línea
+
+    // Crea un elemento temporal para copiar
+    const temp = document.createElement('textarea');
+    temp.value = texto;
+    document.body.appendChild(temp);
+    temp.select();
+    document.execCommand('copy');
+    document.body.removeChild(temp);
+
+    alert('¡Datos copiados al portapapeles!');
+  }
+
     </script>
 
 </body>

@@ -118,8 +118,9 @@ const ctx = document.getElementById('myChart').getContext('2d');
 
   function actualizarGrafica(monthId) {
     const name = datasetsPorMes[`data${monthId}`];
-    miGrafico.data.datasets[0].data = name;
-    miGrafico.data.labels = Array.from({ length: name.length }, (_, i) => i + 1);
+    const graph = name.slice(0, -1);
+    miGrafico.data.datasets[0].data = graph;
+    miGrafico.data.labels = Array.from({ length: graph.length }, (_, i) => i + 1);
     miGrafico.update();
     
   }
