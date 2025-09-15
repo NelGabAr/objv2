@@ -195,10 +195,41 @@ public int hdDaysToPass(){
 
     public double bdSellsNeeded(){
 
+        if (totalBdSells() == 0.0 || totalHolidaySells() == 0.0 || this.goal==0.0)  {
+            return 0.0;
+        }
+
+        double ratio = averageHDsells()/averageBDsells();
 
 
-        return 0.0;
+        if(bdDaysToPass() == 0){
+            return 0;
+        }
+        double result= remainingSells() / (hdDaysToPass() * ratio  +bdDaysToPass());
+        return Math.round(result*100)/100;
+
+
     }
+
+    public double hdSellsNeeded(){
+
+        if (totalBdSells() == 0.0 || totalHolidaySells() == 0.0 || this.goal==0.0)  {
+            return 0.0;
+        }
+        if(hdDaysToPass()==0){
+            return 0;
+        }
+
+        if(bdDaysToPass() == 0){
+            return Math.round(remainingSells()/hdDaysToPass()*100)/100;
+        }
+        double ratio = averageHDsells()/averageBDsells();
+        return Math.round(ratio*bdSellsNeeded()*100)/100;
+
+
+    }
+
+
 
     //END
 

@@ -194,6 +194,10 @@ public class LoginControllers {
         model.put("hdDaysToPass",month.hdDaysToPass());
         model.put("remainingSells", month.remainingSells());
 
+        model.put("bdSellsNeeded", month.bdSellsNeeded());
+        model.put("hdSellsNeeded", month.hdSellsNeeded());
+        
+
         
 
         return new ModelAndView("table",model);
@@ -238,6 +242,9 @@ public class LoginControllers {
         model.put("hdDaysToPass",month.hdDaysToPass());
 
         model.put("remainingSells", month.remainingSells());
+
+        model.put("bdSellsNeeded", month.bdSellsNeeded());
+        model.put("hdSellsNeeded", month.hdSellsNeeded());
         
 
 

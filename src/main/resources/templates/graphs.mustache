@@ -27,12 +27,41 @@
         <div>
             <p class = "gothic">{{user.username}}</p>
         </div>
+
+
+        
+
+
+
             <div class="horizontal">
-               <canvas id="ventas-enero" width="400" height="200">
                 
-               </canvas>
+              <canvas style="display: block; box-sizing: border-box; height: 400px; width: 800px;" width="800" height="400" id="myChart">
+              
+              </canvas>
+                
+
+
+
 
             </div>
+
+
+            <div>
+
+{{#user.years}}
+    <div class="anio-container">
+      <button class="anio-btn" onclick="toggleMeses('{{number}}')">Año {{number}}</button>
+      <div id="meses-{{number}}" class="meses" style="display: none;">
+        {{#months}}
+          <button class="mes-btn" onclick='actualizarGrafica("{{Id}}")'>{{name}}</button>
+        {{/months}}
+      </div>
+    </div>
+  {{/user.years}}
+
+            </div>
+
+
     </div>
 </div>
     
@@ -40,24 +69,61 @@
 
 
    <script>
-  const ctx = document.getElementById('ventas-enero').getContext('2d');
-  new Chart(ctx, {
-    type: 'bar',
+
+
+
+ 
+ 
+function toggleMeses(anio) {
+    const contenedor = document.getElementById(`meses-${anio}`);
+    contenedor.style.display = contenedor.style.display === 'none' ? 'block' : 'none';
+
+  
+  }
+
+
+const datasetsPorMes = {
+
+ {{#user.years}} {{#months}}
+ 
+  data{{Id}} : [ {{#days}}{{totalSells}}, {{/days}} 0],
+  {{/months}} {{/user.years}}
+};
+  
+  const prueba = [1.1,2.2,3.3,4,5,6,7,8,9,0,1,2,3,4,5,6,7,8,9,0,1,2,3,4,5,6,7,8,9,0,1];
+
+
+const ctx = document.getElementById('myChart').getContext('2d');
+  const miGrafico = new Chart(ctx, {
+    type: 'line',
     data: {
-      labels: ['Total', 'Mañana', 'Tarde'],
+      labels: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31],
       datasets: [{
-        label: 'Ventas Enero',
-        data: [120, 50, 70], // Aquí van tus datos
-        backgroundColor: ['#4e79a7', '#f28e2b', '#e15759']
+        label: 'Datos del mes',
+        data: [],
+        borderColor: 'rgb(75, 192, 192)',
+        backgroundColor: 'rgba(75, 192, 192, 0.2)',
       }]
     },
     options: {
       responsive: true,
-      scales: {
-        y: { beginAtZero: true }
+      plugins: {
+        title: {
+          display: true,
+          text: 'Datos por Mes'
+        }
       }
     }
   });
+
+  function actualizarGrafica(monthId) {
+    const name = datasetsPorMes[`data${monthId}`];
+    miGrafico.data.datasets[0].data = name;
+    miGrafico.data.labels = Array.from({ length: name.length }, (_, i) => i + 1);
+    miGrafico.update();
+    
+  }
+
 </script>
 
 </body>
