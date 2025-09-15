@@ -44,9 +44,16 @@ public class MonthService {
         month.setGoal(goal);
 
         for(int i=0;i<days.size();i++){
+
+
             month.getDays().get(i).setTotalSells(totalSells.get(i));
             month.getDays().get(i).setMorningSells(morningSells.get(i));
-            month.getDays().get(i).setAfternoonSells(afternoonSells.get(i));
+            if(month.getDays().get(i).getMorningSells()==0){
+            month.getDays().get(i).setAfternoonSells(afternoonSells.get(i));    
+            }
+            else{
+            month.getDays().get(i).setAfternoonSells(totalSells.get(i)-morningSells.get(i));
+            }
             month.getDays().get(i).setHoliday(Boolean.valueOf(holidays.get(i)));
             month.getDays().get(i).setSelected(prueba(holidays).get(i));
             

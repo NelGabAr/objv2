@@ -33,7 +33,7 @@ public class Month {
         return result;
     }
 
-
+    
 
     public double totalMorningSells(){
         double totalMorningSells = 0;
@@ -162,9 +162,44 @@ public class Month {
     }
     
     
+    public int bdDaysToPass(){
+        int aux = 0;
+        for (Day day : days) {
+            if(!day.getHoliday()&&day.getTotalSells()==0){
+                aux++;
+            }
+        }
+
+        return aux;
+    }
+
+public int hdDaysToPass(){
+        int aux = 0;
+        for (Day day : days) {
+            if(day.getHoliday()&&day.getTotalSells()==0){
+                aux++;
+            }
+        }
+
+        return aux;
+    }
     
 
-    //TODO prediction by hd and bd
+
+
+
+
+    
+
+    //prediction by hd and bd
+
+    public double bdSellsNeeded(){
+
+
+
+        return 0.0;
+    }
+
     //END
 
     //getters and setters

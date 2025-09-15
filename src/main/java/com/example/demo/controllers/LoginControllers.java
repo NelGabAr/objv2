@@ -190,6 +190,11 @@ public class LoginControllers {
         model.put("month", month);
         model.put("objective", month.getGoal());
         model.put("remainingDays",month.remainingDays());
+        model.put("bdDaysToPass",month.bdDaysToPass());
+        model.put("hdDaysToPass",month.hdDaysToPass());
+        model.put("remainingSells", month.remainingSells());
+
+        
 
         return new ModelAndView("table",model);
     }
@@ -205,12 +210,12 @@ public class LoginControllers {
         List<Double> LmorningSells = stringToDouble(morningSells);
         List<Double> LafternoonSells = stringToDouble(afternoonSells);
         Double goal = Double.parseDouble(objective);
-
+/* 
         System.out.println(LtotalSells);
         System.out.println(LmorningSells);
         System.out.println(LafternoonSells);
 
-
+*/
         monthService.uploadMonth(month, LtotalSells, LmorningSells, LafternoonSells, holiday, goal);
         month = monthService.getById(monthId);
 
@@ -229,6 +234,10 @@ public class LoginControllers {
         model.put("remainingDays",month.remainingDays());
         model.put("month", month);
 
+        model.put("bdDaysToPass",month.bdDaysToPass());
+        model.put("hdDaysToPass",month.hdDaysToPass());
+
+        model.put("remainingSells", month.remainingSells());
         
 
 
@@ -239,7 +248,15 @@ public class LoginControllers {
     public List<Double> stringToDouble(List<String> strings){
         List<Double> doubles = new ArrayList<>();
         for (String string : strings) {
-            doubles.add(Double.parseDouble(string));
+            string = string.replace(",", ".");
+            System.out.print(string);
+
+            try {
+                doubles.add(Double.parseDouble(string));
+            } catch (Exception e) {
+                doubles.add(0.0);
+            }
+            
         }
 
     return doubles;
