@@ -4,8 +4,7 @@
 	max-width: inherit;
 	max-height: fit-content;
 	margin: 0;
-	background-color: #34A0A4;
-	box-shadow: 5px 5px #168AAD, -5px -5px #168AAD;
+	
 	box-sizing: initial;
 }
     
@@ -158,9 +157,9 @@ button:active {
 	padding: 5px;
 	max-width: fit-content;
 	/* margin: 0; */
-	background-color: #76C893;
-	column-gap: 42px;
-	box-shadow: -5px -5px #52B69A, 5px 5px #52B69A;
+	background-color: #212121;
+	column-gap: 10px;
+	box-shadow: -5px -5px #888;
 }
 
 .table > :not(caption) > * > * {
@@ -180,7 +179,7 @@ select {
 .casilla-inicio {
 	display: flex;
 	flex-direction: column;
-	background-color: #41B569;
+	background-color: #888;
 }
 .casilla{
     display: flex;
@@ -196,12 +195,13 @@ p{
 
     display: flex;
     flex-direction: column;
-    background-color: #1A759F;
+    background-color: #212121;
 
 }
 .meses{
     display: grid;
     grid-template-columns: repeat(3,180px);
+    justify-items: end;
 }
 
 

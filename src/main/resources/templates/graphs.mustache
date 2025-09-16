@@ -35,7 +35,7 @@
 
             <div class="horizontal">
                 
-              <canvas style="display: block; box-sizing: border-box; height: 400px; width: 800px;" width="800" height="400" id="myChart">
+              <canvas style="display: block; box-sizing: border-box; height: 400px; width: 1000px;" width="1000" height="400" id="myChart">
               
               </canvas>
                 
@@ -49,21 +49,23 @@
             <div>
 
 {{#user.years}}
-    <div class="anio-container">
+    <div class="anio-container" style="display:flex; flex-direction: column; width: 1050px;">
       <button class="anio-btn" onclick="toggleMeses('{{number}}')">Año {{number}}</button>
-      <div id="meses-{{number}}" class="meses" style="display: none;">
+      <div id="meses-{{number}}" class="meses" style="display: none; justify-content:space-between;">
         {{#months}}
-          <button class="mes-btn" onclick='actualizarGrafica("{{Id}}")'>{{name}}</button>
+          <button class="mes-btn" style="font-size:12px;" onclick='actualizarGrafica("{{Id}}")'>{{name}}</button>
         {{/months}}
 
         
       </div>
-      <div class="margin">
-                <button type="button" id="retroceder"> retroceder </button>
-        </div>
+      
     </div>
   {{/user.years}}
-
+<div class="margin">
+                <div>
+                <button type="button" id="retroceder"> retroceder </button>
+                </div>
+        </div>
             </div>
 
 
@@ -82,8 +84,11 @@
  
 function toggleMeses(anio) {
     const contenedor = document.getElementById(`meses-${anio}`);
-    contenedor.style.display = contenedor.style.display === 'none' ? 'block' : 'none';
-
+if (contenedor.style.display === 'none') {
+  contenedor.style.display = 'flex';
+} else {
+  contenedor.style.display = 'none';
+}
   
   }
 
@@ -112,7 +117,7 @@ const ctx = document.getElementById('myChart').getContext('2d');
       }]
     },
     options: {
-      responsive: true,
+      responsive: false,
       plugins: {
         title: {
           display: true,
