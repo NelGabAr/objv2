@@ -6,10 +6,9 @@
     <title>Objetivos</title>
     <!-- CSS de Bootstrap desde CDN -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-
-    <link rel= "preconnect" href="https://fonts.googleapis.com">
-    <link rel= "preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href= "https://fonts.googleapis.com/css2?family=Jacquard+12&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jersey+10&family=Michroma&display=swap" rel="stylesheet">
     <link rel= "stylesheet" href="/css/helloPageStyles.css">
 </head>
 
@@ -22,30 +21,28 @@
     <div class="centeredDiv">
         
         <div>
-            <p class = "gothic">Creacion de cuenta de tienda</p>
+            <p class = "yellowLetters">Creacion de cuenta de tienda</p>
         </div>
-            <div class="vertical">
+            <div class="vertical" Style="display: flex;">
 
         <form action="/register" method="POST" class="interiorFormDiv">
-            <div class="elemento-flex">
-                <label for="username" class="insideLeft">Nombre de usuario:</label>
-                <input type="text" id="username" name="username" required >
+            <div class="centered">
+            
+                <input placeholder="Nombre de usuario" class = "inp" type="text" id="username" name="username" required >
             </div>
-
-            <div class="elemento-flex">
-                <label for="password" class="insideLeft">Contraseña:</label>
-                <input type="password" id="password" name="password" required >
+        <div class="centered">
+            
+                <input placeholder="Contraseña" type="password" class = "inp" id="password" name="password" required >
             </div>
-
-            <div class="elemento-flex">
-                <label for="confirm_password" class="insideLeft">Repetir Contraseña:</label>
-                <input type="password" id="repassword" name="repassword" required >
+            <div class="centered">
+            
+                <input placeholder="Repetir Contraseña" type="password" class = "inp" id="repassword" name="repassword" required >
             </div>
                 <input type="hidden" name="{{_csrf.parameterName}}" value="{{_csrf.token}}"/>
             <div class="centered">
                 <button type="submit">Registrarse</button>
             </div>
-            <div class="margin">
+            <div class="centered">
                 <button type="button" id="login"> log in </button>
         </div>
         </form>
