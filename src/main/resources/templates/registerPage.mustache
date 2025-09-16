@@ -45,6 +45,9 @@
             <div class="centered">
                 <button type="submit">Registrarse</button>
             </div>
+            <div class="margin">
+                <button type="button" id="login"> log in </button>
+        </div>
         </form>
 
             </div>
@@ -59,7 +62,13 @@
     
     <!-- El script debe ir al final del body para asegurar que el DOM esté listo -->
     <script>
-
+        const btnLog = document.getElementById('login');
+         if (btnLog) {
+            btnLog.addEventListener('click',function() {
+            
+            window.location.href = '/login';
+            });
+        }
     </script>
 
 </body>

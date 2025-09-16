@@ -44,6 +44,10 @@
             </div>
         </form>
 
+
+<div class="margin">
+                <button type="button" id="registrarse"> registrarse </button>
+        </div>
             </div>
     </div>
 </div>
@@ -56,7 +60,14 @@
     
     <!-- El script debe ir al final del body para asegurar que el DOM esté listo -->
     <script>
-
+    const btnReg = document.getElementById('registrarse');
+    
+    if (btnReg) {
+            btnReg.addEventListener('click',function() {
+            
+            window.location.href = '/register';
+            });
+        }
     </script>
 
 </body>

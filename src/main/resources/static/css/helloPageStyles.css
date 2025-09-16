@@ -22,9 +22,23 @@
         background-color: #C48B5C;
         box-shadow: inset -4px -4px #7A4B25;
     }
+    .homeRect{
+        padding: 50px;
+        display: grid;
+        align-items: center;
+        justify-content: center;
+        background-color: #212121;
+    }
     .gothic{
         font-family: 'jacquard 12';
         font-size: 60px;
+    }
+
+    .yellowLetters{
+
+        font-family: 'jersey 10';
+        font-size: 60px;
+        color: #fbca1f;
     }
     
     .gothic-little{
@@ -55,30 +69,27 @@
         align-content: center;
         padding: 20px;
     }
+/* From Uiverse.io by adamgiebl */ 
 button {
-  font-family: 'jacquard 12';
-  font-size: 30px;
-  border: none;
-  outline: 1px dotted rgb(37, 37, 37);
-  outline-offset: -4px;
+  background: #fbca1f;
+  font-family: inherit;
+  padding: 0.6em 1.3em;
+  font-weight: 900;
+  font-size: 18px;
+  border: 3px solid black;
+  border-radius: 0.4em;
+  box-shadow: 0.1em 0.1em;
   cursor: pointer;
-  background: #916844;
-  box-shadow:
-    inset -1px -1px #292929,
-    inset 1px 1px #C48B5C,
-    inset -2px -2px #C48B5C,
-    inset 2px 2px #7A4B25;
-  letter-spacing: 2px;
-  padding: 15px 40px;
-  
+}
+
+button:hover {
+  transform: translate(-0.05em, -0.05em);
+  box-shadow: 0.15em 0.15em;
 }
 
 button:active {
-  box-shadow:
-    inset -1px -1px #fff,
-    inset 1px 1px #292929,
-    inset -2px -2px #ffffff,
-    inset 2px 2px rgb(158, 158, 158);
+  transform: translate(0.05em, 0.05em);
+  box-shadow: 0.05em 0.05em;
 }
 
 
