@@ -50,7 +50,7 @@
 {{#user.years}}
     <div class="anio-container" style="display:flex; flex-direction: column; width: 1050px;">
       <button class="anio-btn" onclick="toggleMeses('{{number}}')">Año {{number}}</button>
-      <div id="meses-{{number}}" class="meses" style="display: none; justify-content:space-between;">
+      <div id="meses-{{number}}" class="meses" style="justify-content:space-between;">
         {{#months}}
           <button class="mes-btn" style="font-size:12px;" onclick='actualizarGrafica("{{Id}}","{{name}}")'>{{name}}</button>
         {{/months}}
@@ -83,11 +83,7 @@
  
 function toggleMeses(anio) {
     const contenedor = document.getElementById(`meses-${anio}`);
-if (contenedor.style.display === 'none') {
-  contenedor.style.display = 'flex';
-} else {
-  contenedor.style.display = 'none';
-}
+    contenedor.classList.toggle('visible');
   
   }
 
@@ -107,12 +103,7 @@ const ctx = document.getElementById('myChart').getContext('2d');
     type: 'line',
     data: {
       labels: [],
-      datasets: [{
-        label: '',
-        data: [],
-        borderColor: 'rgb(75, 192, 192)',
-        backgroundColor: 'rgba(75, 192, 192, 0.2)',
-      }]
+      datasets: []
     },
     options: {
       responsive: false,

@@ -199,9 +199,19 @@ p{
 
 }
 .meses{
-    display: grid;
-    grid-template-columns: repeat(3,180px);
+    display: flex;
+    flex-direction: row;
+    overflow: hidden;
     justify-items: end;
+    max-height: 0;
+      transition: max-height 0.5s ease-in-out;
+    
+    
+}
+.meses.visible{
+
+
+    max-height: 500px;
 }
 
 

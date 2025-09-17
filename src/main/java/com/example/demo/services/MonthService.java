@@ -52,7 +52,8 @@ public class MonthService {
             month.getDays().get(i).setAfternoonSells(afternoonSells.get(i));    
             }
             else{
-            month.getDays().get(i).setAfternoonSells(totalSells.get(i)-morningSells.get(i));
+                double f = totalSells.get(i)-morningSells.get(i);
+            month.getDays().get(i).setAfternoonSells(Math.round(f*100)/100);
             }
             month.getDays().get(i).setHoliday(Boolean.valueOf(holidays.get(i)));
             month.getDays().get(i).setSelected(prueba(holidays).get(i));
