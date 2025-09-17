@@ -93,12 +93,15 @@
                 <p class="yellowLetters" style="font-size:20px; height:30px;">ventas restantes:</p> 
                 <p class="yellowLetters" style="font-size:20px; height:20px;">{{remainingSells}}</p>
             </div>
-            <div>
-            <p class = "yellowLetters" style="font-size: 60px; height:30px;">{{month.name}}</p>
+            
+            
+<div>
+            <p class = "yellowLetters" style="font-size: 60px; height:30px; width: fit-content;">{{month.name}}</p>
             </div>
 
-
         </div>
+            </div>
+
         
 <input type="hidden" name="{{_csrf.parameterName}}" value="{{_csrf.token}}">
 <input type="hidden" name="monthId" value="{{month.Id}}">
@@ -170,7 +173,7 @@
 
 
   function copiarDatos() {
-    const datos = [{{#month.days}}{{totalSells}},{{/month.days}},{{totalsells}}];
+    const datos = [{{#month.days}}{{totalSells}},{{/month.days}}];
     
     
     

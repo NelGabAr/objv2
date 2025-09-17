@@ -199,6 +199,13 @@ p{
 
 }
 .meses{
+    display: grid;
+    grid-template-columns: repeat(3,180px);
+    justify-items: end;
+    
+}
+
+.meses-container{
     display: flex;
     flex-direction: row;
     overflow: hidden;
@@ -208,12 +215,11 @@ p{
     
     
 }
-.meses.visible{
+.meses-container.visible{
 
 
     max-height: 500px;
 }
-
 
 body{
     background-color : #2C3E50;

@@ -90,6 +90,8 @@ public class LoginControllers {
             yearFactory.newYear(2024, user);
         }
 
+
+        System.err.println("alguien se metio");
     return new ModelAndView("home",model);
     }
 
