@@ -22,8 +22,6 @@ import com.example.demo.pogos.DayPogo;
 import com.example.demo.pogos.UserRegisterPogo;
 import com.example.demo.services.*;
 import jakarta.servlet.http.HttpServletRequest;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 
 
@@ -132,7 +130,7 @@ public class LoginControllers {
             monthFactory.startNewMonth("Enero", 31, yearToModel);
         }
         
-
+        model.put("year",yearToModel);
         model.put("months", yearToModel.getMonths());
 
 
@@ -257,11 +255,9 @@ public class LoginControllers {
     public List<Double> stringToDouble(List<String> strings){
         List<Double> doubles = new ArrayList<>();
         for (String string : strings) {
-            string = string.replace(",", ".");
-            System.out.print(string);
-
+            
             try {
-                doubles.add(Double.parseDouble(string));
+                doubles.add(flatNumbers(string));
             } catch (Exception e) {
                 doubles.add(0.0);
             }
@@ -280,6 +276,121 @@ public class LoginControllers {
         User user =userService.getUserByUsername(username);
         model.put("user", user);
         return new ModelAndView("graphs",model);
+    }
+
+
+    @GetMapping("/import")
+    public String importHistoric(@RequestParam String content, @RequestParam Long yearID) {
+        
+        System.out.println(yearID);
+        System.out.println(content);
+        
+        //TODO primero convertir todo en un array de numeros en strings
+
+        String[] valores = content.replaceAll("[\\t\\n]+", " ").trim().split("\\s+");
+        for (String string : valores) {
+            System.out.println(string);
+        }
+        //segundo limpiar esos strings de formato para que sean todos 00.0 de ese estilo
+        ArrayList<Double> cleanNumbers = new ArrayList<>();
+        for (String string : valores) {
+            //tercero pasarlo todo a doubles
+            cleanNumbers.add(flatNumbers(string));
+
+        }
+        
+        System.out.println(cleanNumbers.size());
+        System.out.println(cleanNumbers.toString());
+        //cuarto establecer divisiones en distintos arrays de 31, 30, 29 o 28 dias
+        //quinto, rellenar los meses del año con esos arrays
+
+
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName();
+        User user = userService.getUserByUsername(username);
+
+        List<Year> years = user.getYears();
+        Year currentYear = null;
+        for (Year year : years) {
+            if(year.getId()==yearID){
+                currentYear=year;
+            }
+        }
+        //tomar los meses
+
+            List<Month> months = currentYear.getMonths();
+        int ext = 0;
+        for (int i= 0; i<31;i++){
+            System.err.println("va por el dia : " +i);
+            for(int j = 0; j<12; j++){
+                System.err.println("falla en el mes: " +j);
+                if(i>=months.get(j).getDays().size()){
+                    
+                    System.err.println("mu grande");
+                }
+                else{
+                        if (j==0&&i==5) {
+                            months.get(j).getDays().get(i).setTotalSells(0.0);
+                        }
+                        else if(j==11&&i==24){
+                            months.get(j).getDays().get(i).setTotalSells(0.0);
+                        
+                        }
+                        else{
+                            months.get(j).getDays().get(i).setTotalSells(cleanNumbers.get(ext));
+                            ext++;
+                        }
+                }
+               }
+
+        }
+        for (Month aux : months) {
+            monthService.update(aux);
+        }
+
+
+
+        
+
+
+
+
+//buscamos el año
+
+
+
+        return "redirect:/years";
+
+    }
+    
+    public Double flatNumbers(String wildDouble){
+
+        wildDouble = wildDouble.trim();
+
+        // Detectar el último separador decimal (coma o punto)
+        int ultimaComa = wildDouble.lastIndexOf(',');
+        int ultimoPunto = wildDouble.lastIndexOf('.');
+
+        int separadorDecimal = Math.max(ultimaComa, ultimoPunto);
+
+        if (separadorDecimal == -1) {
+            // No hay separador decimal, asumimos número entero
+            return Double.parseDouble(wildDouble);
+        }
+
+        // Separar parte entera y decimal
+        String parteEntera = wildDouble.substring(0, separadorDecimal);
+        String parteDecimal = wildDouble.substring(separadorDecimal + 1);
+
+        // Eliminar separadores de miles en la parte entera
+        parteEntera = parteEntera.replaceAll("[.,]", "");
+
+        // Unir con punto como separador decimal
+        wildDouble= parteEntera + "." + parteDecimal;
+        return Double.parseDouble(wildDouble);
+
+        
     }
     
 }

@@ -42,6 +42,9 @@ public class Year {
     public List<Month> getMonths(){
         return this.months;
     }
+    public Long getId(){
+        return this.Id;
+    }
 
 
 }

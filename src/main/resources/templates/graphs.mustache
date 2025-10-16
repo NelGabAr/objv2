@@ -52,7 +52,7 @@
       <button class="anio-btn" onclick="toggleMeses('{{number}}')">Año {{number}}</button>
       <div id="meses-{{number}}" class="meses-container" style="justify-content:space-between;">
         {{#months}}
-          <button class="mes-btn" style="font-size:12px;" onclick='actualizarGrafica("{{Id}}","{{name}}")'>{{name}}</button>
+          <button class="mes-btn" style="font-size:12px;" onclick='actualizarGrafica("{{Id}}","{{name}} {{year.number}}")'>{{name}}</button>
         {{/months}}
 
         

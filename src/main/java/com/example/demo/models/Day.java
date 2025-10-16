@@ -11,7 +11,7 @@ public class Day {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     Long Id;
-    
+
     private double morningSells = 0.0;
     private double afternoonSells = 0.0;
     private double totalSells = 0.0;

@@ -1,6 +1,8 @@
 package com.example.demo.config;
 // src/main/java/com/example/demo/config/SecurityConfiguration.java
 
+import org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory;
+import org.springframework.boot.web.server.WebServerFactoryCustomizer;
 import org.springframework.context.annotation.*;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -9,6 +11,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+import org.apache.catalina.connector.Connector;
 
 
 @Configuration
@@ -48,4 +51,18 @@ public class SecurityConfiguration {
             );
         return http.build();
     }
+
+    @Bean
+    public WebServerFactoryCustomizer<TomcatServletWebServerFactory> containerCustomizer() {
+        return factory -> {
+            Connector connector = new Connector(TomcatServletWebServerFactory.DEFAULT_PROTOCOL);
+            connector.setScheme("http");
+            connector.setPort(8443); // Puerto HTTP
+            connector.setSecure(false);
+            connector.setRedirectPort(8080); // Puerto HTTPS
+            factory.addAdditionalTomcatConnectors(connector);
+        };
+    }
+    
+    
 }

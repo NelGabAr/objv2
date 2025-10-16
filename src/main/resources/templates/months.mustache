@@ -33,6 +33,19 @@
             </div>
             {{/months}}
                 
+            <div class="margin">
+                <button type="button"  id="importarHistorico"> importar desde histórico </button>
+            </div>
+            <div class="emergente" id = "emergente">
+                <form action="/import" method="GET">
+                <input type="hidden" name="yearID" id="{{#year}}{{Id}}{{/year}}" value="{{#year}}{{Id}}{{/year}}">
+                <input class="modal" type="textarea" name="content" id="content" placeholder="pega aqui el historico">
+                <button type="submit">importar</button>
+                </form>
+                
+                <button type="button" id = "cerrar-emergente">Cerrar</button>
+            </div>
+
 
             <div class="margin">
                 <button type="button" id="retroceder"> retroceder </button>
@@ -52,11 +65,26 @@
     <script>
     const btnBack = document.getElementById('retroceder');
 
+    const btnOpenModal = document.getElementById('importarHistorico');
+    const btnCerrar = document.getElementById('cerrar-emergente');
     if (btnBack) {
             btnBack.addEventListener('click',function() {
             window.location.href = '/years';
             });
         }
+        if (btnOpenModal){
+        btnOpenModal.addEventListener('click',function() {
+            
+                  document.getElementById("emergente").style.display = "block";
+            });
+    }
+
+    if (btnCerrar){
+        btnCerrar.addEventListener('click',function(){
+            document.getElementById("emergente").style.display = "none";
+        });
+
+    }
     </script>
 
 </body>
